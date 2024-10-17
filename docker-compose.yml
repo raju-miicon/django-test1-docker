@@ -1,0 +1,57 @@
+
+## For Production djano PostgreSQL or MySQL Database used
+
+# version: '3.8'
+
+# services:
+#   web:
+#     build: .
+#     command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
+#     volumes:
+#       - .:/app
+#     env_file:
+#       - .env
+#     depends_on:
+#       - db
+#     networks:
+#       - webnet
+#     expose:
+#       - "8000"
+
+#   db:
+#     image: postgres:14
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#     environment:
+#       POSTGRES_DB: mydb
+#       POSTGRES_USER: myuser
+#       POSTGRES_PASSWORD: mypassword
+#     networks:
+#       - webnet
+
+# networks:
+#   webnet:
+# volumes:
+#   postgres_data:
+
+
+
+## For Local djano Default Database 
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app  # Mount your project files to the container
+      - ./db.sqlite3:/app/db.sqlite3  # Mount the SQLite database file to persist it
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    networks:
+      - webnet
+
+networks:
+  webnet:
