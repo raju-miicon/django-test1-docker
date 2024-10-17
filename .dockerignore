@@ -1,0 +1,14 @@
+node_modules
+.dockerignore
+.docker
+.next
+out
+coverage
+*.log
+.DS_Store
+.env
+.env.sample
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
